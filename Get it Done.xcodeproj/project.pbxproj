@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		B520B4542686ED42001232BB /* Get_it_DoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4532686ED42001232BB /* Get_it_DoneApp.swift */; };
-		B520B4562686ED42001232BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4552686ED42001232BB /* ContentView.swift */; };
+		B520B4562686ED42001232BB /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4552686ED42001232BB /* TaskListView.swift */; };
 		B520B4582686ED43001232BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B520B4572686ED43001232BB /* Assets.xcassets */; };
 		B520B45B2686ED43001232BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B520B45A2686ED43001232BB /* Preview Assets.xcassets */; };
+		B520B4632686F317001232BB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4622686F317001232BB /* Task.swift */; };
+		B520B4662686F544001232BB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4652686F544001232BB /* Checkbox.swift */; };
+		B520B4692686F75B001232BB /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4682686F75B001232BB /* TaskRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B520B4502686ED42001232BB /* Get it Done.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get it Done.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B520B4532686ED42001232BB /* Get_it_DoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_it_DoneApp.swift; sourceTree = "<group>"; };
-		B520B4552686ED42001232BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B520B4552686ED42001232BB /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		B520B4572686ED43001232BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B520B45A2686ED43001232BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B520B45C2686ED43001232BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B520B4622686F317001232BB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		B520B4652686F544001232BB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		B520B4682686F75B001232BB /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +58,11 @@
 		B520B4522686ED42001232BB /* Get it Done */ = {
 			isa = PBXGroup;
 			children = (
+				B520B4672686F743001232BB /* Models */,
+				B520B4642686F526001232BB /* Common views */,
 				B520B4532686ED42001232BB /* Get_it_DoneApp.swift */,
-				B520B4552686ED42001232BB /* ContentView.swift */,
+				B520B4552686ED42001232BB /* TaskListView.swift */,
+				B520B4682686F75B001232BB /* TaskRow.swift */,
 				B520B4572686ED43001232BB /* Assets.xcassets */,
 				B520B45C2686ED43001232BB /* Info.plist */,
 				B520B4592686ED43001232BB /* Preview Content */,
@@ -67,6 +76,22 @@
 				B520B45A2686ED43001232BB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B520B4642686F526001232BB /* Common views */ = {
+			isa = PBXGroup;
+			children = (
+				B520B4652686F544001232BB /* Checkbox.swift */,
+			);
+			path = "Common views";
+			sourceTree = "<group>";
+		};
+		B520B4672686F743001232BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B520B4622686F317001232BB /* Task.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B520B4562686ED42001232BB /* ContentView.swift in Sources */,
+				B520B4692686F75B001232BB /* TaskRow.swift in Sources */,
+				B520B4662686F544001232BB /* Checkbox.swift in Sources */,
+				B520B4562686ED42001232BB /* TaskListView.swift in Sources */,
+				B520B4632686F317001232BB /* Task.swift in Sources */,
 				B520B4542686ED42001232BB /* Get_it_DoneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
