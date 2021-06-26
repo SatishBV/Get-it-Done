@@ -15,7 +15,7 @@ struct Checkbox: View {
     var body: some View {
         Image(systemName: checked ? "checkmark.circle.fill" : "circle")
             .resizable()
-            .foregroundColor(checked ? Color(UIColor.systemBlue) : Color.secondary)
+            .foregroundColor(checked ? Color.black.opacity(0.7) : Color.secondary)
             .frame(width: 24, height: 24)
             .onTapGesture {
                 self.checked.toggle()

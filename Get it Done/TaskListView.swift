@@ -12,13 +12,38 @@ struct TaskListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(tasks) { task in
-                    TaskRow(task: task)
+            ZStack {
+                List {
+                    ForEach(tasks) { task in
+                        TaskRow(task: task)
+                    }
+                }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("+")
+                                .font(.system(.largeTitle))
+                                .frame(width: 60, height: 55)
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 7)
+                        })
+                        .background(Color.black.opacity(0.7))
+                        .cornerRadius(30)
+                        .padding()
+                        .shadow(color: Color.black.opacity(0.3),
+                                radius: 3,
+                                x: 3,
+                                y: 3)
+                    }
                 }
             }
             .navigationBarTitle("Tasks")
-        }
+        }.listStyle(InsetListStyle.init())
     }
 }
 
