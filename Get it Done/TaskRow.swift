@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskRow: View {
-    @State var task: Task
+    @ObservedObject var task: Task
     
     private var deadLineString: String {
         guard let deadLine = task.deadLine else { return "" }
