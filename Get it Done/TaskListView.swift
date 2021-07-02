@@ -13,17 +13,17 @@ struct TaskListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    ForEach(tasks) { task in
-                        TaskRow(task: task)
-                    }
+                List(tasks) { task in
+                    TaskRow(task: task)
                 }
                 
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
-                        NavigationLink(destination: TaskEntryView(task: Task(title: ""))) {
+                        NavigationLink(destination:
+                                        TaskEntryView(task: Task(title: ""),
+                                                      addFunction: addNewTask)) {
                             Text("+")
                                 .font(.system(.largeTitle))
                                 .frame(width: 60, height: 55)
@@ -42,6 +42,10 @@ struct TaskListView: View {
             }
             .navigationBarTitle("Tasks")
         }.listStyle(InsetListStyle.init())
+    }
+    
+    func addNewTask(_ task: Task) {
+        tasks.append(task)
     }
 }
 

@@ -16,7 +16,7 @@ extension Binding {
 
 struct TaskEntryView: View {
     @ObservedObject var task: Task
-    
+    let addFunction: (Task) -> Void
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -80,6 +80,7 @@ struct TaskEntryView: View {
             if !task.title.isEmpty {
                 Section {
                     Button(action: {
+                        self.addFunction(task)
                         self.presentation.wrappedValue.dismiss()
                     }, label: {
                         Text("Add task")
@@ -94,6 +95,8 @@ struct TaskEntryView: View {
 
 struct TaskEntryView_Preview: PreviewProvider {
     static var previews: some View {
-        TaskEntryView(task: Task(title: ""))
+        TaskEntryView(task: Task(title: "")) { _ in
+            
+        }
     }
 }

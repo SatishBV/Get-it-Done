@@ -13,30 +13,58 @@ struct TaskRow: View {
     private var deadLineString: String {
         guard let deadLine = task.deadLine else { return "" }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/YYYY"
+        dateFormatter.dateFormat = "d MMM yyyy"
         return dateFormatter.string(from: deadLine)
     }
     
+    private var reminderString: String {
+        guard let reminder = task.reminder else { return "" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.amSymbol = "am"
+        dateFormatter.pmSymbol = "pm"
+        dateFormatter.dateFormat = "d MMM yyyy h:mm a"
+        return dateFormatter.string(from: reminder)
+    }
+    
     var body: some View {
-        HStack {
+        HStack(alignment: .center, spacing: 16) {
             Checkbox(checked: $task.completed)
-                .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
             
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(task.title)
                     .font(.system(size: 18))
                     .strikethrough(task.completed, color: Color.gray)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
-                if !task.completed && !deadLineString.isEmpty {
-                    HStack {
-                        Image(systemName: "flag.fill")
-                            .foregroundColor(.gray)
+                if !task.completed {
+                    HStack(spacing: 16) {
+                        if !reminderString.isEmpty {
+                            HStack(spacing: 4) {
+                                Image(systemName: "alarm")
+                                    .resizable()
+                                    .frame(width: 16, height: 16)
+                                    .foregroundColor(.black.opacity(0.4))
+                                
+                                Text(reminderString)
+                                    .font(.system(size: 12))
+                            }
+                            .padding(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
+                        }
                         
-                        Text(deadLineString)
-                            .font(.system(size: 12))
+                        if !deadLineString.isEmpty {
+                            HStack(spacing: 4) {
+                                Image(systemName: "flag")
+                                    .resizable()
+                                    .frame(width: 16, height: 16)
+                                    .foregroundColor(.black.opacity(0.4))
+                                
+                                Text(deadLineString)
+                                    .font(.system(size: 12))
+                            }
+                            .padding(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
+                        }
                     }
                 }
-                
             }
         }
     }

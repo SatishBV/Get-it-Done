@@ -27,7 +27,7 @@ class Task: Identifiable, ObservableObject {
     /// Reminder of the task. If the reminder date has passed, the reminder gets removed
     @Published var reminder: Date?
     
-    static let defaultTask: Task = Task(title: "Wash clothes", deadLine: Date())
+    static let defaultTask: Task = Task(title: "Wash clothes", deadLine: Date(), reminder: Date())
     
     init(title: String,
          deadLine: Date? = nil,
