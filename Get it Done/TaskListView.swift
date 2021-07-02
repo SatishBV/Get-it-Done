@@ -23,15 +23,13 @@ struct TaskListView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: {
-                            
-                        }, label: {
+                        NavigationLink(destination: TaskEntryView()) {
                             Text("+")
                                 .font(.system(.largeTitle))
                                 .frame(width: 60, height: 55)
                                 .foregroundColor(Color.white)
                                 .padding(.bottom, 7)
-                        })
+                        }
                         .background(Color.black.opacity(0.7))
                         .cornerRadius(30)
                         .padding()
