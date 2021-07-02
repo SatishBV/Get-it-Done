@@ -15,21 +15,29 @@ extension Binding {
 }
 
 struct TaskEntryView: View {
-    @State private var title: String = ""
-    @State private var deadLine: Date?
-    @State private var reminder: Date?
+    @ObservedObject var task: Task
     
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        Form {
-            TextField("Task name", text: $title)
+        let deadLineBinding = Binding<Date>(
+            get: {task.deadLine ?? Date()},
+            set: {task.deadLine = $0}
+        )
+        
+        let reminderBinding = Binding<Date>(
+            get: {task.reminder ?? Date()},
+            set: {task.reminder = $0}
+        )
+        
+        return Form {
+            TextField("Task name", text: $task.title)
                 .font(.system(size: 18))
                 .padding(4)
                 .cornerRadius(4)
             
             Section {
-                Toggle(isOn: Binding(isNotNil: $deadLine, defaultValue: Date())) {
+                Toggle(isOn: Binding(isNotNil: $task.deadLine, defaultValue: Date())) {
                     HStack {
                         Image(systemName: "flag.fill")
                             .foregroundColor(.red)
@@ -37,10 +45,9 @@ struct TaskEntryView: View {
                             .font(.system(size: 16))
                     }
                 }
-                if deadLine != nil {
+                if task.deadLine != nil {
                     DatePicker(
-                        selection: Binding<Date>(get: {self.deadLine ?? Date()},
-                                                 set: {self.deadLine = $0}),
+                        selection: deadLineBinding,
                         displayedComponents: .date
                     ) {
                         Text("Select date")
@@ -50,30 +57,27 @@ struct TaskEntryView: View {
                 }
             }
             
-            if deadLine != nil {
-                Section {
-                    Toggle(isOn: Binding(isNotNil: $reminder, defaultValue: Date())) {
-                        HStack {
-                            Image(systemName: "alarm.fill")
-                                .foregroundColor(.green)
-                            Text("Reminder")
-                                .font(.system(size: 16))
-                        }
+            Section {
+                Toggle(isOn: Binding(isNotNil: $task.reminder, defaultValue: Date())) {
+                    HStack {
+                        Image(systemName: "alarm.fill")
+                            .foregroundColor(.green)
+                        Text("Reminder")
+                            .font(.system(size: 16))
                     }
-                    if reminder != nil {
-                        DatePicker(
-                            selection: Binding<Date>(get: {self.reminder ?? Date()},
-                                                     set: {self.reminder = $0})
-                        ) {
-                            Text("Select")
-                                .font(.system(size: 16))
-                                .foregroundColor(.blue)
-                        }
+                }
+                if task.reminder != nil {
+                    DatePicker(
+                        selection: reminderBinding
+                    ) {
+                        Text("Select")
+                            .font(.system(size: 16))
+                            .foregroundColor(.blue)
                     }
                 }
             }
             
-            if !title.isEmpty {
+            if !task.title.isEmpty {
                 Section {
                     Button(action: {
                         self.presentation.wrappedValue.dismiss()
@@ -90,6 +94,6 @@ struct TaskEntryView: View {
 
 struct TaskEntryView_Preview: PreviewProvider {
     static var previews: some View {
-        TaskEntryView()
+        TaskEntryView(task: Task(title: ""))
     }
 }

@@ -7,21 +7,34 @@
 
 import Foundation
 
-struct Task: Identifiable, Hashable {
+class Task: Identifiable, ObservableObject {
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     /// Unique identifier for every task
     var id: UUID
     
     /// Indicaetes if a task is complete
-    var completed: Bool = false
+    @Published var completed: Bool = false
     
     /// Name of the task
-    var title: String
+    @Published var title: String
     
     /// Deadline of the task. If the current date exceeds deadline, task should be highlighted as overdue
-    var deadLine: Date?
+    @Published var deadLine: Date?
     
     /// Reminder of the task. If the reminder date has passed, the reminder gets removed
-    var reminder: Date?
+    @Published var reminder: Date?
     
-    static let defaultTask: Task = Task(id: .init(), title: "Wash clothes", deadLine: Date())
+    static let defaultTask: Task = Task(title: "Wash clothes", deadLine: Date())
+    
+    init(title: String,
+         deadLine: Date? = nil,
+         reminder: Date? = nil) {
+        self.id = UUID()
+        self.title = title
+        self.deadLine = deadLine
+        self.reminder = reminder
+    }
 }

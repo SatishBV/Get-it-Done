@@ -23,7 +23,7 @@ struct TaskListView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        NavigationLink(destination: TaskEntryView()) {
+                        NavigationLink(destination: TaskEntryView(task: Task(title: ""))) {
                             Text("+")
                                 .font(.system(.largeTitle))
                                 .frame(width: 60, height: 55)
