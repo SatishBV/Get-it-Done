@@ -15,8 +15,24 @@ extension Binding {
 }
 
 struct TaskEntryView: View {
+    enum Mode {
+        case add((Task) -> Void)
+        case edit
+        
+        var cta: String {
+            switch self {
+            case .add:
+                return "Add task"
+                
+            case .edit:
+                return "Update task"
+            }
+        }
+    }
+    
     @ObservedObject var task: Task
-    let addFunction: (Task) -> Void
+    let mode: Mode
+    
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -80,10 +96,15 @@ struct TaskEntryView: View {
             if !task.title.isEmpty {
                 Section {
                     Button(action: {
-                        self.addFunction(task)
+                        switch self.mode {
+                        case let .add(addFunction):
+                            addFunction(task)
+                        case .edit:
+                            break
+                        }
                         self.presentation.wrappedValue.dismiss()
                     }, label: {
-                        Text("Add task")
+                        Text(self.mode.cta)
                     })
                 }
             }
@@ -95,8 +116,8 @@ struct TaskEntryView: View {
 
 struct TaskEntryView_Preview: PreviewProvider {
     static var previews: some View {
-        TaskEntryView(task: Task(title: "")) { _ in
+        TaskEntryView(task: Task(title: ""), mode: .add({ _ in
             
-        }
+        }))
     }
 }
