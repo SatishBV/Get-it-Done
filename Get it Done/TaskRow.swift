@@ -20,8 +20,8 @@ struct TaskRow: View {
     private var reminderString: String {
         guard let reminder = task.reminder else { return "" }
         let dateFormatter = DateFormatter()
-        dateFormatter.amSymbol = "am"
-        dateFormatter.pmSymbol = "pm"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.dateFormat = "d MMM yyyy h:mm a"
         return dateFormatter.string(from: reminder)
     }

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct TaskListView: View {
-    @State var tasks: [Task] = [Task.defaultTask]
+    @State var tasks: [Task]
     
     var body: some View {
         NavigationView {
             ZStack {
                 List(tasks) { task in
-                    TaskRow(task: task)
+                    NavigationLink(destination: TaskEntryView(task: task, mode: .edit)) {
+                        TaskRow(task: task)
+                    }
                 }
                 
                 VStack {
@@ -51,6 +53,6 @@ struct TaskListView: View {
 
 struct TaskList_Preview: PreviewProvider {
     static var previews: some View {
-        TaskListView()
+        TaskListView(tasks: [Task.defaultTask])
     }
 }

@@ -25,7 +25,7 @@ struct TaskEntryView: View {
                 return "Add task"
                 
             case .edit:
-                return "Update task"
+                return "Done"
             }
         }
     }
