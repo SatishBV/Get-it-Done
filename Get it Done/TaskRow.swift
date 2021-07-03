@@ -22,7 +22,7 @@ struct TaskRow: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
-            Checkbox(checked: $task.completed)
+            Checkbox(checked: $task.completed, color: task.priority?.iconColor ?? .gray)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(task.title)

@@ -6,6 +6,35 @@
 //
 
 import Foundation
+import SwiftUI
+
+enum Priority {
+    case p1
+    case p2
+    case p3
+    
+    var iconString: String {
+        switch self {
+        case .p1:
+            return "exclamationmark.3"
+        case .p2:
+            return "exclamationmark.2"
+        case .p3:
+            return "exclamationmark"
+        }
+    }
+    
+    var iconColor: Color {
+        switch self {
+        case .p1:
+            return Color.red
+        case .p2:
+            return Color.yellow
+        case .p3:
+            return Color.blue
+        }
+    }
+}
 
 class Task: Identifiable, ObservableObject {
     static func == (lhs: Task, rhs: Task) -> Bool {
@@ -26,6 +55,9 @@ class Task: Identifiable, ObservableObject {
     
     /// Reminder of the task. If the reminder date has passed, the reminder gets removed
     @Published var reminder: Date?
+    
+    /// Priority of the task.
+    @Published var priority: Priority?
     
     static let defaultTask: Task = Task(title: "Wash clothes", deadLine: Date(), reminder: Date())
     

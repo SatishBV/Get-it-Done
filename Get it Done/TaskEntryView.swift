@@ -29,7 +29,7 @@ struct TaskEntryView: View {
             }
         }
     }
-    
+    @State private var showingOptions = false
     @ObservedObject var task: Task
     let mode: Mode
     
@@ -51,6 +51,34 @@ struct TaskEntryView: View {
                 .font(.system(size: 18))
                 .padding(4)
                 .cornerRadius(4)
+            
+            HStack {
+                Text("Priority")
+                    .frame(width: .infinity, height: .infinity)
+                    .font(.system(size: 18))
+                    .padding(4)
+                Spacer()
+                Image(systemName: task.priority?.iconString ?? "exclamationmark")
+                    .foregroundColor(task.priority?.iconColor ?? .gray.opacity(0.5))
+                    
+            }
+            .onTapGesture {
+                showingOptions = true
+            }
+            .actionSheet(isPresented: $showingOptions) {
+                ActionSheet(title: Text("Change background"), buttons: [
+                    .default(Text("P1")) {
+                        self.task.priority = .p1
+                    },
+                    .default(Text("P2")) {
+                        self.task.priority = .p2
+                    },
+                    .default(Text("P3")) {
+                        self.task.priority = .p3
+                    },
+                    .cancel()
+                ])
+            }
             
             Section {
                 Toggle(isOn: Binding(isNotNil: $task.deadLine, defaultValue: Date())) {
