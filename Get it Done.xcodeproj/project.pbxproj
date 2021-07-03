@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51DD2EF26906ACD00170516 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DD2EE26906ACD00170516 /* DateUtils.swift */; };
 		B520B4542686ED42001232BB /* Get_it_DoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4532686ED42001232BB /* Get_it_DoneApp.swift */; };
 		B520B4562686ED42001232BB /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B4552686ED42001232BB /* TaskListView.swift */; };
 		B520B4582686ED43001232BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B520B4572686ED43001232BB /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B51DD2EE26906ACD00170516 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		B520B4502686ED42001232BB /* Get it Done.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get it Done.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B520B4532686ED42001232BB /* Get_it_DoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_it_DoneApp.swift; sourceTree = "<group>"; };
 		B520B4552686ED42001232BB /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B51DD2ED26906ABE00170516 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B51DD2EE26906ACD00170516 /* DateUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B520B4472686ED42001232BB = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		B520B4522686ED42001232BB /* Get it Done */ = {
 			isa = PBXGroup;
 			children = (
+				B51DD2ED26906ABE00170516 /* Utils */,
 				B520B4672686F743001232BB /* Models */,
 				B520B4642686F526001232BB /* Common views */,
 				B520B4532686ED42001232BB /* Get_it_DoneApp.swift */,
@@ -170,6 +181,7 @@
 				B520B4692686F75B001232BB /* TaskRow.swift in Sources */,
 				B520B4662686F544001232BB /* Checkbox.swift in Sources */,
 				B520B4562686ED42001232BB /* TaskListView.swift in Sources */,
+				B51DD2EF26906ACD00170516 /* DateUtils.swift in Sources */,
 				B520B4632686F317001232BB /* Task.swift in Sources */,
 				B520B4542686ED42001232BB /* Get_it_DoneApp.swift in Sources */,
 			);

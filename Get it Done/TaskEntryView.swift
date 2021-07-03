@@ -54,42 +54,58 @@ struct TaskEntryView: View {
             
             Section {
                 Toggle(isOn: Binding(isNotNil: $task.deadLine, defaultValue: Date())) {
-                    HStack {
-                        Image(systemName: "flag.fill")
+                    HStack(spacing: 10) {
+                        Image(systemName: "calendar")
                             .foregroundColor(.red)
-                        Text("Deadline")
-                            .font(.system(size: 16))
+                        
+                        
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Deadline")
+                                .font(.body)
+                            
+                            if let deadLine = task.deadLine {
+                                Text(DateUtils.dayIdentifier(date: deadLine))
+                                    .font(.callout)
+                                    .foregroundColor(.blue)
+                            }
+                        }
                     }
                 }
                 if task.deadLine != nil {
                     DatePicker(
+                        "",
                         selection: deadLineBinding,
                         displayedComponents: .date
-                    ) {
-                        Text("Select date")
-                            .font(.system(size: 16))
-                            .foregroundColor(.blue)
-                    }
+                    )
+                    .labelsHidden()
+                    .datePickerStyle(GraphicalDatePickerStyle.init())
                 }
             }
             
             Section {
                 Toggle(isOn: Binding(isNotNil: $task.reminder, defaultValue: Date())) {
-                    HStack {
-                        Image(systemName: "alarm.fill")
+                    HStack(spacing: 10) {
+                        Image(systemName: "alarm")
                             .foregroundColor(.green)
-                        Text("Reminder")
-                            .font(.system(size: 16))
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Reminder")
+                                .font(.body)
+                            
+                            if let reminder = task.reminder {
+                                Text(DateUtils.dayIdentifier(date: reminder, includeTime: true))
+                                    .font(.callout)
+                                    .foregroundColor(.blue)
+                            }
+                        }
                     }
                 }
                 if task.reminder != nil {
                     DatePicker(
+                        "",
                         selection: reminderBinding
-                    ) {
-                        Text("Select")
-                            .font(.system(size: 16))
-                            .foregroundColor(.blue)
-                    }
+                    )
+                    .labelsHidden()
+                    .datePickerStyle(GraphicalDatePickerStyle.init())
                 }
             }
             

@@ -12,18 +12,12 @@ struct TaskRow: View {
     
     private var deadLineString: String {
         guard let deadLine = task.deadLine else { return "" }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
-        return dateFormatter.string(from: deadLine)
+        return DateUtils.dayIdentifier(date: deadLine)
     }
     
     private var reminderString: String {
         guard let reminder = task.reminder else { return "" }
-        let dateFormatter = DateFormatter()
-        dateFormatter.amSymbol = "AM"
-        dateFormatter.pmSymbol = "PM"
-        dateFormatter.dateFormat = "d MMM yyyy h:mm a"
-        return dateFormatter.string(from: reminder)
+        return DateUtils.dayIdentifier(date: reminder, includeTime: true)
     }
     
     var body: some View {
@@ -43,7 +37,7 @@ struct TaskRow: View {
                                 Image(systemName: "alarm")
                                     .resizable()
                                     .frame(width: 16, height: 16)
-                                    .foregroundColor(.black.opacity(0.4))
+                                    .foregroundColor(.green)
                                 
                                 Text(reminderString)
                                     .font(.system(size: 12))
@@ -53,10 +47,10 @@ struct TaskRow: View {
                         
                         if !deadLineString.isEmpty {
                             HStack(spacing: 4) {
-                                Image(systemName: "flag")
+                                Image(systemName: "calendar")
                                     .resizable()
                                     .frame(width: 16, height: 16)
-                                    .foregroundColor(.black.opacity(0.4))
+                                    .foregroundColor(.red)
                                 
                                 Text(deadLineString)
                                     .font(.system(size: 12))
